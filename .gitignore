@@ -1,0 +1,40 @@
+# 构建产物
+target/
+dist/
+build/
+out/
+*.class
+*.jar
+*.war
+
+# 依赖
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.settings/
+.project
+.classpath
+
+# 敏感配置
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+cookies.txt
+
+# 日志与临时文件
+*.log
+logs/
+tmp/
+.DS_Store
+Thumbs.db

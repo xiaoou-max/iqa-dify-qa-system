@@ -1,0 +1,1456 @@
+app:
+  description: 李祥
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 获取查询结果
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.0.29@90bdd91665a9b5c63f3a2a964071141f29033db9b742c6c1d741430859ec3e0a
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/searxng:0.0.5@09189359ac9d5f073550169bd1e9f704ff6623a258b20596fd862d5576c0eaea
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: 98b3fcce-5188-4b90-bc85-518039de0b9c
+    name: area
+    selector:
+    - env
+    - area
+    value: 河南省或洛阳市
+    value_type: string
+  - description: ''
+    id: 7684d366-9f01-4734-9fa2-f5df8db46149
+    name: city
+    selector:
+    - env
+    - city
+    value: 洛阳市
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: code
+      id: 1737761041878-source-1740706001095-target
+      source: '1737761041878'
+      sourceHandle: source
+      target: '1740706001095'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: if-else
+      id: 1740706001095-source-1741768013164-target
+      source: '1740706001095'
+      sourceHandle: source
+      target: '1741768013164'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1741768013164-true-1741747867393-target
+      source: '1741768013164'
+      sourceHandle: 'true'
+      target: '1741747867393'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: end
+      id: 1741768013164-false-1741768341060-target
+      source: '1741768013164'
+      sourceHandle: 'false'
+      target: '1741768341060'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: 1741747867393-source-1741771038985-target
+      source: '1741747867393'
+      sourceHandle: source
+      target: '1741771038985'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: http-request
+      id: 1740125755722-source-1737761041878-target
+      source: '1740125755722'
+      sourceHandle: source
+      target: '1737761041878'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: question-classifier
+      id: 1741771038985-source-1742292982181-target
+      source: '1741771038985'
+      sourceHandle: source
+      target: '1742292982181'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: end
+      id: 1742292982181-2-1737761045622-target
+      source: '1742292982181'
+      sourceHandle: '2'
+      target: '1737761045622'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1742292982181-1-1742293480850-target
+      source: '1742292982181'
+      sourceHandle: '1'
+      target: '1742293480850'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1742292982181-1-17422937330100-target
+      source: '1742292982181'
+      sourceHandle: '1'
+      target: '17422937330100'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1742292982181-1-17422940067790-target
+      source: '1742292982181'
+      sourceHandle: '1'
+      target: '17422940067790'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1742292982181-1-17422941174980-target
+      source: '1742292982181'
+      sourceHandle: '1'
+      target: '17422941174980'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1742292982181-1-17423064106130-target
+      source: '1742292982181'
+      sourceHandle: '1'
+      target: '17423064106130'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1742292982181-1-17423707615890-target
+      source: '1742292982181'
+      sourceHandle: '1'
+      target: '17423707615890'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 1742293480850-source-1742371396427-target
+      source: '1742293480850'
+      sourceHandle: source
+      target: '1742371396427'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 17422937330100-source-17423717283580-target
+      source: '17422937330100'
+      sourceHandle: source
+      target: '17423717283580'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 17422940067790-source-17423718913080-target
+      source: '17422940067790'
+      sourceHandle: source
+      target: '17423718913080'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 17422941174980-source-17423719674040-target
+      source: '17422941174980'
+      sourceHandle: source
+      target: '17423719674040'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 17423064106130-source-17423720077730-target
+      source: '17423064106130'
+      sourceHandle: source
+      target: '17423720077730'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 17423707615890-source-17423720372840-target
+      source: '17423707615890'
+      sourceHandle: source
+      target: '17423720372840'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1742371396427-source-17423059320070-target
+      source: '1742371396427'
+      sourceHandle: source
+      target: '17423059320070'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 17423717283580-source-17423059320070-target
+      source: '17423717283580'
+      sourceHandle: source
+      target: '17423059320070'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 17423718913080-source-17423059320070-target
+      source: '17423718913080'
+      sourceHandle: source
+      target: '17423059320070'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 17423719674040-source-17423059320070-target
+      source: '17423719674040'
+      sourceHandle: source
+      target: '17423059320070'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 17423720077730-source-17423059320070-target
+      source: '17423720077730'
+      sourceHandle: source
+      target: '17423059320070'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 17423720372840-source-17423059320070-target
+      source: '17423720372840'
+      sourceHandle: source
+      target: '17423059320070'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1737761031852-source-1740125755722-target
+      source: '1737761031852'
+      sourceHandle: source
+      target: '1740125755722'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: sqls
+          max_length: 20000
+          options: []
+          required: true
+          type: paragraph
+          variable: sqls
+        - label: question
+          max_length: 2000
+          options: []
+          required: true
+          type: paragraph
+          variable: question
+        - label: write_excel
+          max_length: 48
+          options: []
+          required: true
+          type: number
+          variable: write_excel
+        - label: queryContents
+          max_length: 2000
+          options: []
+          required: true
+          type: paragraph
+          variable: queryContents
+      height: 167
+      id: '1737761031852'
+      position:
+        x: -100.59907391196305
+        y: 300.37917367995254
+      positionAbsolute:
+        x: -100.59907391196305
+        y: 300.37917367995254
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-1
+            key: ''
+            type: text
+            value: '{"bits_sql":"{{#1740125755722.sqls#}}","question":"{{#1737761031852.question#}}","write_excel":{{#1737761031852.write_excel#}}}'
+          type: json
+        desc: ''
+        headers: ''
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+          read: 300
+          write: 299
+        title: HTTP 请求
+        type: http-request
+        url: http://yth.bit-service.com:30770/adi/bitapi/query_database_ly
+        variables: []
+      height: 154
+      id: '1737761041878'
+      position:
+        x: 751.255974325813
+        y: 300.37917367995254
+      positionAbsolute:
+        x: 751.255974325813
+        y: 300.37917367995254
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1740706001095'
+          - output_json
+          variable: result
+        - value_selector:
+          - '1740706001095'
+          - excel_url
+          variable: excel_url
+        - value_selector:
+          - '1741771038985'
+          - output_echarts
+          variable: output_echarts
+        - value_selector:
+          - '1740706001095'
+          - type
+          variable: type
+        selected: false
+        title: 查询成功-结束
+        type: end
+      height: 167
+      id: '1737761045622'
+      position:
+        x: 2537.9578766825875
+        y: 932.9960798409016
+      positionAbsolute:
+        x: 2537.9578766825875
+        y: 932.9960798409016
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def remove_trailing_semicolon(s):\n    \"\"\"去除字符串末尾的分号\"\"\"\n   \
+          \ if s.endswith(';'):\n        return s[:-1]\n    return s\n\ndef contains_empty_string(lst):\n\
+          \    \"\"\"检查列表是否包含空的子串\"\"\"\n    for item in lst:\n        stripped_item\
+          \ = item.strip()\n        if not stripped_item:\n            return True\n\
+          \    return False\n\ndef main(sqls: str, queryContents: str,question: str,write_excel:\
+          \ int) -> dict:\n    sqls = sqls.replace('\"', '\\\\\"')\n    \n    sqls\
+          \ = sqls.replace('；', ';')\n    queryContents = queryContents.replace('；',\
+          \ ';')\n    # 去除末尾的分号\n    sqls = remove_trailing_semicolon(sqls)\n    queryContents\
+          \ = remove_trailing_semicolon(queryContents)\n    \n    \n    # 按分号分割成列表\n\
+          \    sql_list = sqls.split(';')\n    query_content_list = queryContents.split(';')\
+          \    \n    # 校验sql_list是否包含空的子串\n    if contains_empty_string(sql_list):\n\
+          \        raise ValueError(\"sqls中包含空字符串\")\n    \n    # 校验query_content_list是否包含空的子串\n\
+          \    if contains_empty_string(query_content_list):\n        raise ValueError(\"\
+          queryContents中包含空字符串\")\n    \n    countMatchFlag = True\n    # 校验sql数量和queryContent数量是否相同\n\
+          \    if len(sql_list) != len(query_content_list):\n        countMatchFlag\
+          \ = False\n        #raise ValueError(f\"sql和queryContent的数量不相等，sql为{len(sql_list)}个，queryContent为{len(query_content_list)}个\"\
+          )\n    \n    # 生成JSON对象\n    if countMatchFlag:\n        bits_sql = [{\"\
+          sql\": sql, \"queryContent\": query} for sql, query in zip(sql_list, query_content_list)]\n\
+          \    else:\n        bits_sql = [{\"sql\": sql} for sql in sql_list]\n  \
+          \  result = {\"bits_sql\": bits_sql,\"sqls\":sqls,\"queryContents\":queryContents}\n\
+          \    return result "
+        code_language: python3
+        desc: ''
+        outputs:
+          bits_sql:
+            children: null
+            type: array[object]
+          queryContents:
+            children: null
+            type: string
+          sqls:
+            children: null
+            type: string
+        selected: false
+        title: 入参校验和重构
+        type: code
+        variables:
+        - value_selector:
+          - '1737761031852'
+          - sqls
+          variable: sqls
+        - value_selector:
+          - '1737761031852'
+          - question
+          variable: question
+        - value_selector:
+          - '1737761031852'
+          - write_excel
+          variable: write_excel
+        - value_selector:
+          - '1737761031852'
+          - queryContents
+          variable: queryContents
+      height: 53
+      id: '1740125755722'
+      position:
+        x: 318.81477057297394
+        y: 300.37917367995254
+      positionAbsolute:
+        x: 318.81477057297394
+        y: 300.37917367995254
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "# -*- coding: utf-8 -*-\n\"\"\"\nCreated on Wed Mar 12 17:21:00 2025\n\
+          \n@author: 29613\n\"\"\"\n\ndef escape_special_characters_in_json(json_obj):\n\
+          \    if isinstance(json_obj, dict):\n        # 如果json_obj是字典，则递归处理每个键值对\n\
+          \        escaped_dict = {}\n        for key, value in json_obj.items():\n\
+          \            escaped_dict[key] = escape_special_characters_in_json(value)\n\
+          \        return escaped_dict\n    elif isinstance(json_obj, list):\n   \
+          \     # 如果json_obj是列表，则递归处理每个元素\n        escaped_list = []\n        for\
+          \ item in json_obj:\n            escaped_list.append(escape_special_characters_in_json(item))\n\
+          \        return escaped_list\n    elif isinstance(json_obj, str):\n    \
+          \    # 如果json_obj是字符串，则检查并转义特殊字符'|'\n        return json_obj.replace('|',\
+          \ '-')\n    else:\n        # 如果json_obj不是字典、列表或字符串，则直接返回（不处理）\n        return\
+          \ json_obj\n\ndef needs_processing(obj):\n    \"\"\"判断对象是否需要深度处理\"\"\"\n\
+          \    for value in obj.values():\n        if isinstance(value, (list, dict)):\n\
+          \            return True\n    return False\n\ndef process_item(obj):\n \
+          \   \"\"\"处理单个对象中的数组型字段\"\"\"\n    processed = obj.copy()\n    for key in\
+          \ list(processed.keys()):  # 使用 list 避免迭代时修改问题\n        value = processed[key]\n\
+          \        if isinstance(value, list):\n            # 处理数组字段\n           \
+          \ if len(value) > 2:\n                processed[key] = value[:2]\n     \
+          \           processed[f\"{key}_description\"] = f\"{key}共{len(value)}条记录，随机展示2条\"\
+          \n        elif isinstance(value, dict):\n            # 递归处理嵌套对象\n      \
+          \      processed[key] = process_item(value)\n    return processed\n\ndef\
+          \ main(input_json_str: str,question: str) -> dict:\n    input_json = json.loads(input_json_str)\n\
+          \    showCount = 12\n    excel_url = ''\n    if input_json.get('type') !=\
+          \ 'success':\n        return {\"output_json\":input_json,\"excel_url\":excel_url,\"\
+          type\":\"fail\",\"sqlResult\":\"none\",\"resultArray\":[{}]}\n    \n   \
+          \ if 'excel_url' in input_json:\n        excel_url = input_json['excel_url']\n\
+          \    \n    # 定义一个空列表，用来装载每条sql的查询结果，也就是把每个result装载到数组中\n    resultArray\
+          \ = []\n    processed_data = {}\n    \n    for key in input_json['data']:\n\
+          \        if not key.startswith(\"excel\"):\n            original_array =\
+          \ input_json['data'][key]\n            total_records = len(original_array)\n\
+          \            if total_records > 20:\n                showCount = 2\n   \
+          \         # 首对象类型检测\n            need_deep_process = False\n           \
+          \ if original_array and isinstance(original_array[0], dict):\n         \
+          \       first_obj = original_array[0]\n                need_deep_process\
+          \ = needs_processing(first_obj)\n            \n            # 第一层处理：截取数组前10\n\
+          \            truncated_array = original_array[:showCount] if total_records\
+          \ > showCount else original_array\n            \n            # 第二层处理：遍历每个对象中的数组字段\n\
+          \            # 根据预检结果选择处理方式\n            if need_deep_process:\n       \
+          \         processed_array = [process_item(item) for item in truncated_array]\n\
+          \            else:\n                processed_array = truncated_array  #\
+          \ 直接使用原始对象       \n    \n            processed_data[key] = {\n         \
+          \       \"description\": f\"共{total_records}条记录\" + (\"，这里随机展示\"+str(showCount)+\"\
+          条\" if total_records > showCount else \"\"),\n                \"data\":\
+          \ processed_array,\n                \"question\":question\n            }\n\
+          \            \n            resultArray.append({\"data\": processed_array})\
+          \  \n            processed_data_new = escape_special_characters_in_json(processed_data)\n\
+          \            \n              \n    \n    return {\"output_json\":{\"type\"\
+          :\"success\",\"data\":processed_data_new,\"uuid\":input_json['uuid']},\"\
+          excel_url\":excel_url,\"sqlResult\":json.dumps(processed_data, ensure_ascii=False),\"\
+          resultArray\":resultArray,\"type\":\"success\"}"
+        code_language: python3
+        desc: ''
+        outputs:
+          excel_url:
+            children: null
+            type: string
+          output_json:
+            children: null
+            type: object
+          resultArray:
+            children: null
+            type: array[object]
+          sqlResult:
+            children: null
+            type: string
+          type:
+            children: null
+            type: string
+        selected: false
+        title: 减少响应数据量
+        type: code
+        variables:
+        - value_selector:
+          - '1737761041878'
+          - body
+          variable: input_json_str
+        - value_selector:
+          - '1737761031852'
+          - question
+          variable: question
+      height: 53
+      id: '1740706001095'
+      position:
+        x: 1042.8366383799623
+        y: 300.37917367995254
+      positionAbsolute:
+        x: 1042.8366383799623
+        y: 300.37917367995254
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1740706001095'
+          - sqlResult
+        desc: ''
+        model:
+          completion_params:
+            response_format: JSON
+          mode: chat
+          name: qwen2.5-32b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - edition_type: basic
+          id: 2701894b-06c4-44ee-9e53-1b4384b51382
+          role: system
+          text: "你是一个专业的JSON和可视化分析助手，需要根据提供的SQL查询结果和查询内容，判断其查询结果适合用哪种Echarts图表类型展示。\n\
+            \n现在，我需要您解析一个JSON对象，并根据其中的数据判断每条SQL查询结果是否适合使用echarts的柱状图（bar）、折线图（line）或饼图（pie）进行展示。具体的解析逻辑和要求如下：\n\
+            \n1. JSON对象结构：\n- JSON对象包含多个以result_开头的属性，表示不同的SQL查询结果。\n- 每个result_属性中，包含一个data数组和一个queryContent字符串。\n\
+            - data数组包含多个对象，每个对象表示一行查询结果，对象的键是字段名，值是字段值。\n- queryContent字符串描述了这条SQL查询的大概内容，用于参考，但不直接参与图表类型的判断。\n\
+            - JSON对象中的question属性是对所有SQL的总结，即原始查询需求，一般就是用户的要求\n2. 图表类型判断逻辑：\n#柱状图（bar）：\n\
+            - 如果data数组中的对象有多个（即查询结果有多行,但小于13个），且存在至少一个适合作为x轴的字段（通常是日期、类别等），以及至少一个适合作为y轴的数值字段，则适合生成柱状图；或者question中明确要求使用柱状图。\n\
+            - x轴字段通常是具有唯一性或类别性的字符串类型的字段，有可能是多个字段组成分类，请把把所有字符串类型的字段都作为x轴的字段。\n- y轴字段通常是数值类型的字段。\n\
+            - xAxisColumns表示x轴的字段名列表；seriesColumns表示y轴的字段名columnName及图表名称chartsTitle列表，一个seriesColumn会对应一个图表，需要结合queryContent和当前的columnName得到一个简要的图表名，如果queryContent为空，那么可以直接使用columnName作为图表名。\n\
+            - 出现在xAxisColumns中的字段名严禁用于seriesColumns\n- chartsFullTitle表示当要把所有的seriesColumns展示在一个图表中时的完整名称，你要结合seriesColumns中所有的columnName得到一个简要名称，控制在12个字以内，例如“销售趋势”\n\
+            #折线图（line）：\n- 判断逻辑与柱状图类似，但更适合展示随时间变化的趋势；或者question中明确要求使用折线图。\n- 如果x轴字段是日期或时间序列，则优先考虑折线图。\n\
+            - xAxisColumns和seriesColumns的确定与柱状图相同。\n- chartsFullTitle的确定与柱状图相同。\n\
+            #饼图（pie）：\n- 如果data数组中的对象数量较少（大于1且不超过12个），且存在一个适合作为分类的字段（也有可能由多个字段组成分类），以及一个适合作为数值的字段（表示比例或数量），则适合生成饼图；或者question中明确要求使用饼图。\n\
+            - nameColumns表示饼图name的字段名列表，用来表示分类，请把所有字符串类型的字段都作为nameColumns的字段。\n- seriesColumns应包含数值字段列表（通常只有一个数值字段用于表示比例或数量），如果存在比例字段，那么要把比例字段作为seriesColumns的第一个元素。\n\
+            - 出现在nameColumns中的字段名严禁用于seriesColumns\n- chartsFullTitle表示当要把所有的seriesColumns展示在一个图表中时的完整名称，你要结合seriesColumns中第一个columnName得到一个简要名称，控制在12个字以内，例如“销售趋势”\n\
+            #不适合生成图表：\n- 如果data数组为空，或数组长度等于1，或无法根据上述逻辑确定合适的图表类型，则chartType值为none。\n\
+            - 如果是以项目名称作为分类，且data数组元素超过12个，则chartType值为none。\n- 如果data数组元素超过12个，则chartType值为none。\n\
+            3. 输出格式：\n- 直接输出结构化json普通字符串即可，严禁使用markdown语法```json，不要有换行符\n- 输出一个JSON对象字符串，不包含额外的换行符和空白符，以便我获取到该字符串以后可以直接通过python代码转为json对象，JSON对象只有一个数组类型的属性analysis_result，数组元素的数量与result_属性的数量一致。\n\
+            - 每个数组元素是一个对象，包含chartType、xAxisColumns（如果适用）和seriesColumns字段。\n- 如果xAxisColumns有多个字段，表示需要多个字段才能构成一个分类。\n\
+            - 如果seriesColumns有多个字段，表示可以针对每个字段生成一个图表。\n4. 忽略其他属性：\n- 如果JSON对象中包含不以result_开头的属性，请直接忽略这些属性。\n\
+            5. 示例输入与输出：\n#输入：\njson\n{\n  \"result_0\": {\n    \"data\": [\n     \
+            \ {\"column1\": \"value11\", \"column2\": \"value12\", \"column3\": \"\
+            value13\"},\n      {\"column1\": \"value21\", \"column2\": \"value22\"\
+            , \"column3\": \"value23\"}\n    ],\n    \"queryContent\": \"不同年龄段对期房、现房、存量房的购房偏好\"\
+            \n  },\n  \"result_1\": {\n    \"data\": [],\n    \"queryContent\": \"\
+            另一段查询内容\"\n  },\n  \"result_2\": {\n    \"data\": [\n      {\"column1\"\
+            : \"value11\", \"column2\": \"value12\", \"column3\": \"value13\"},\n\
+            \      {\"column1\": \"value21\", \"column2\": \"value22\", \"column3\"\
+            : \"value23\"}\n\t],\n    \"queryContent\": \"各区县交易量占比\"\n  }\n}\n#输出：\n\
+            {\"analysis_result\":[{\"chartType\":\"bar\",\"xAxisColumns\":[\"column1\"\
+            ],\"chartsFullTitle\":\"购房偏好\",\"seriesColumns\":[{\"columnName\":\"column2\"\
+            ,\"chartsTitle\":\"购房偏好-期房\"},{\"columnName\":\"column3\",\"chartsTitle\"\
+            :\"购房偏好-现房\"}]},{\"chartType\": \"none\"},{\"chartType\":\"pie\",\"chartsFullTitle\"\
+            :\"交易量占比\",\"nameColumns\":[\"column1\",\"column2\"],\"seriesColumns\"\
+            :[{\"columnName\":\"column3\",\"chartsTitle\":\"期房交易量占比\"}]}]}\n\n6. 特别约束：\n\
+            - 不要解释分析过程，直接输出结构化标准JSON\n- 确保JSON格式严格正确（无逗号错误/引号缺失），严禁使用markdown语法```json\n\
+            \n现在，请根据以上逻辑和要求，解析给定的JSON对象，并生成符合格式要求的结构化JSON数据。谢谢！"
+        - id: 7b01e284-9c94-4d14-9ffb-c1d13cf46985
+          role: user
+          text: JSON对象：{{#context#}}。请按要求输出结构化的Json字符串。
+        selected: false
+        title: LLM可视化分析
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1741747867393'
+      position:
+        x: 1585.5837818411142
+        y: 234.26032900059312
+      positionAbsolute:
+        x: 1585.5837818411142
+        y: 234.26032900059312
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 41d6d5a6-2429-406e-964f-5dfb0039977c
+            value: success
+            varType: string
+            variable_selector:
+            - '1740706001095'
+            - type
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 125
+      id: '1741768013164'
+      position:
+        x: 1307.598779931832
+        y: 300.37917367995254
+      positionAbsolute:
+        x: 1307.598779931832
+        y: 300.37917367995254
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1740706001095'
+          - type
+          variable: type
+        - value_selector:
+          - '1740706001095'
+          - output_json
+          variable: error_msg
+        selected: false
+        title: 查询失败-结束
+        type: end
+      height: 115
+      id: '1741768341060'
+      position:
+        x: 1585.5837818411142
+        y: 485.34946251011286
+      positionAbsolute:
+        x: 1585.5837818411142
+        y: 485.34946251011286
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "from typing import List, Dict, Any\nimport json\n\ndef main(echarts:\
+          \ str, resultArray) -> dict:\n    # 解析 echarts 配置字符串为 JSON 数组\n    marker\
+          \ = \"think>\"\n    marker_index = echarts.rfind(marker)\n    echarts =\
+          \ echarts[marker_index + len(marker):] if marker_index != -1 else echarts\n\
+          \    echarts_configs = json.loads(echarts)[\"analysis_result\"]\n    \n\
+          \    onlyOne = False\n    tooMany = False\n    \n    # 初始化结果数组\n    echartsConfigs\
+          \ = []\n    \n    # 遍历每个 echarts 配置和对应的查询结果\n    for echart_config, result\
+          \ in zip(echarts_configs, resultArray):\n        chart_type = echart_config.get(\"\
+          chartType\")\n        chartsFullTitle = ''\n        xAxisColumns = echart_config.get(\"\
+          xAxisColumns\", [])\n        seriesColumns = echart_config.get(\"seriesColumns\"\
+          , [])\n        nameColumns = echart_config.get(\"nameColumns\", [])\n  \
+          \      chartsFullTitle = echart_config.get(\"chartsFullTitle\", '')\n  \
+          \      # 初始化 xAxisData 和 seriesDatas\n        xAxisData = []\n        seriesDatas\
+          \ = []\n        echarts_config = {}\n        if len(result['data']) > 1\
+          \ and len(result['data']) < 13:\n            # 处理数据数组\n            for record\
+          \ in result['data']:\n                # 构造 xAxis 数据\n                if\
+          \ xAxisColumns:\n                    xAxis_value = \"_\".join([str(record.get(col))\
+          \ for col in xAxisColumns])\n                    xAxisData.append(xAxis_value)\n\
+          \                \n                # 构造 series 数据\n                series_data_list\
+          \ = []\n                for col in seriesColumns:\n                    series_value\
+          \ = record.get(col.get(\"columnName\"))\n                    # 判断是否是浮点数（小数）\n\
+          \                    if isinstance(series_value, float):\n             \
+          \           # 保留两位小数\n                        series_value = round(series_value,\
+          \ 2)\n                    series_data_list.append(series_value)\n      \
+          \          seriesDatas.append(series_data_list)\n            \n        \
+          \    # 根据 chartType 生成对应的 echarts 配置\n            if chart_type == \"bar\"\
+          \ or chart_type == \"line\":\n                # 处理柱状图或折线图\n            \
+          \    seriesData_index = 0\n                for group_idx in range(0, len(seriesColumns),\
+          \ 2):\n                    series_list = []\n                    yAxis_list\
+          \ = []\n                    legendData = []\n                    formatterStr\
+          \ = \"{b}\"\n                    # 获取当前分组的元素（最多两个）\n                   \
+          \ group = seriesColumns[group_idx:group_idx+2]\n                    for\
+          \ i, series_col in enumerate(group):\n                        series_item\
+          \ = {\"data\": [row[seriesData_index] for row in seriesDatas],\"type\":\
+          \ chart_type,\"name\": series_col.get(\"columnName\"),\"yAxisIndex\":i}\n\
+          \                        series_list.append(series_item)\n             \
+          \           yAxis_item = {\"type\": \"value\",\"name\":series_col.get(\"\
+          columnName\")}\n                        yAxis_list.append(yAxis_item)\n\
+          \                        legendData.append(series_col.get(\"columnName\"\
+          ))\n                        formatterStr = formatterStr + \"<br/>{a\"+str(i)+\"\
+          }：{c\"+str(i)+\"}\" \n                        seriesData_index = seriesData_index\
+          \ + 1\n                    if chartsFullTitle == '':\n                 \
+          \       chartsFullTitle = seriesColumns[0].get(\"chartsTitle\")\n      \
+          \              echarts_config = {\"title\":{\"text\":chartsFullTitle},\"\
+          legend\":{'orient':'horizontal','x':'left','y':'bottom','data':legendData},\"\
+          toolbox\":{'show':True,'feature':{'magicType':{'type':['line','bar']},'saveAsImage':{'show':True}}},\"\
+          tooltip\":{\"trigger\":'axis','triggerOn':'mousemove','formatter':formatterStr},\"\
+          xAxis\": {\"type\": \"category\",\"axisLabel\":{\"interval\":0,\"rotate\"\
+          :45},\"data\": xAxisData},\"yAxis\": yAxis_list,\"series\": series_list}\n\
+          \                    # 将生成的配置添加到结果数组中\n                    echartsConfigs.append(echarts_config)\n\
+          \            elif chart_type == \"pie\":\n                for series_col\
+          \ in seriesColumns:\n                    chartsTitle = series_col.get(\"\
+          chartsTitle\", '')\n                    if chartsTitle == '':\n        \
+          \                chartsTitle = chartsFullTitle\n                    # 处理饼图\n\
+          \                    pie_data = []\n                    legendData = []\n\
+          \                    for record in result['data']:\n                   \
+          \     name = \"_\".join([str(record.get(col)) for col in nameColumns])\n\
+          \                        value = record.get(series_col.get(\"columnName\"\
+          ))  \n                        # 判断是否是浮点数（小数）\n                        if\
+          \ isinstance(series_value, float):\n                            # 保留两位小数\n\
+          \                            value = round(value, 2)\n                 \
+          \       pie_data.append({\"name\": name, \"value\": value})\n          \
+          \              legendData.append(name)  \n                    orient = \"\
+          vertical\"\n                    if len(legendData) > 3:\n              \
+          \          orient = \"horizontal\"\n                    echarts_config =\
+          \ {\"title\":{\"text\":chartsTitle},\"legend\":{'orient':orient,'x':'left','y':'bottom','data':legendData},\"\
+          toolbox\":{'show':True,'feature':{'saveAsImage':{'show':True}}},'tooltip':{'trigger':'item'},\"\
+          series\":[{\"type\":\"pie\",\"data\":pie_data}]}\n                    #\
+          \ 将生成的配置添加到结果数组中\n                    echartsConfigs.append(echarts_config)\n\
+          \        elif len(result['data']) == 1:\n            onlyOne = True\n  \
+          \      elif len(result['data']) > 1:\n            tooMany = True\n     \
+          \   \n    # 创建一个空列表来存储格式化后的字符串\n    formatted_strings = []\n    # 遍历 echartsConfigs\
+          \ 列表\n    for echarts_config in echartsConfigs:\n        # 将 echarts_config\
+          \ 转换为 JSON 格式的字符串，并添加前缀和后缀\n        formatted_string = \"```echarts\\n\"\
+          \ + json.dumps(echarts_config, indent=2, ensure_ascii=False) + \"\\n```\\\
+          n\"\n        # 将格式化后的字符串添加到列表中\n        formatted_strings.append(formatted_string)\n\
+          \    # 使用 join() 方法将列表中的所有字符串拼接成一个单一的字符串\n    output_string = \"\".join(formatted_strings)\n\
+          \    if len(resultArray) == 1 and tooMany:\n        output_string = \"数据条目较多，不适合使用图表展示\"\
+          \ \n    print(output_string)\n    return {\"output_echarts\": output_string}"
+        code_language: python3
+        desc: ''
+        outputs:
+          output_echarts:
+            children: null
+            type: string
+        selected: true
+        title: 生成echarts配置
+        type: code
+        variables:
+        - value_selector:
+          - '1741747867393'
+          - text
+          variable: echarts
+        - value_selector:
+          - '1740706001095'
+          - resultArray
+          variable: resultArray
+      height: 53
+      id: '1741771038985'
+      position:
+        x: 1859.8550031452507
+        y: 234.26032900059312
+      positionAbsolute:
+        x: 1859.8550031452507
+        y: 234.26032900059312
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        classes:
+        - id: '1'
+          name: 需要分析原因或预测未来
+        - id: '2'
+          name: 不需要分析原因或预测未来
+        desc: 结合用户提问，判断是否有必要分析原因或预测未来；如果涉及时间序列数据，要么一定要分析原因或预测未来
+        instruction: '##任务
+
+          结合用户提问和数据库查询结果，判断是否有必要分析原因或预测未来
+
+          ##注意
+
+          - 如果数据库查询结果包含时间序列数据，要么一定要分析原因或预测未来
+
+          - 如果数据库查询结果的每个data数组中只有一个元素，那么不需要分析原因或预测未来
+
+          ##用户提问
+
+          {{#1737761031852.question#}}
+
+          ##数据库查询结果
+
+          {{#1740706001095.sqlResult#}}'
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: qwen2.5-32b-instruct
+          provider: langgenius/tongyi/tongyi
+        query_variable_selector:
+        - '1737761031852'
+        - question
+        selected: false
+        title: 问题分类器
+        topics: []
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 231
+      id: '1742292982181'
+      position:
+        x: 2186.024241756525
+        y: 380.7257070963842
+      positionAbsolute:
+        x: 2186.024241756525
+        y: 380.7257070963842
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: searxng
+        provider_name: searxng
+        provider_type: builtin
+        selected: false
+        title: SearXNG 搜索房地产政策
+        tool_configurations:
+          search_type: general
+        tool_label: SearXNG 搜索
+        tool_name: searxng_search
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#env.city#}}最近的房地产政策'
+        type: tool
+      height: 89
+      id: '1742293480850'
+      position:
+        x: 2546.3551736064187
+        y: 197.86103163383876
+      positionAbsolute:
+        x: 2546.3551736064187
+        y: 197.86103163383876
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: searxng
+        provider_name: searxng
+        provider_type: builtin
+        selected: false
+        title: SearXNG 搜索人口增长率
+        tool_configurations:
+          search_type: general
+        tool_label: SearXNG 搜索
+        tool_name: searxng_search
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#env.city#}}最近的人口增长率'
+        type: tool
+      height: 89
+      id: '17422937330100'
+      position:
+        x: 2546.3551736064187
+        y: 317.38932737928536
+      positionAbsolute:
+        x: 2546.3551736064187
+        y: 317.38932737928536
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: searxng
+        provider_name: searxng
+        provider_type: builtin
+        selected: false
+        title: SearXNG 搜索GDP
+        tool_configurations:
+          search_type: general
+        tool_label: SearXNG 搜索
+        tool_name: searxng_search
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#env.city#}}的GDP'
+        type: tool
+      height: 89
+      id: '17422940067790'
+      position:
+        x: 2546.3551736064187
+        y: 427.29111443610554
+      positionAbsolute:
+        x: 2546.3551736064187
+        y: 427.29111443610554
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: searxng
+        provider_name: searxng
+        provider_type: builtin
+        selected: false
+        title: SearXNG 搜索城镇化进程
+        tool_configurations:
+          search_type: general
+        tool_label: SearXNG 搜索
+        tool_name: searxng_search
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#env.city#}}城镇化进程'
+        type: tool
+      height: 89
+      id: '17422941174980'
+      position:
+        x: 2546.3551736064187
+        y: 543.591260850487
+      positionAbsolute:
+        x: 2546.3551736064187
+        y: 543.591260850487
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1740706001095'
+          - output_json
+          variable: result
+        - value_selector:
+          - '1740706001095'
+          - excel_url
+          variable: excel_url
+        - value_selector:
+          - '1741771038985'
+          - output_echarts
+          variable: output_echarts
+        - value_selector:
+          - '17423717283580'
+          - text
+          variable: 人口增长情况
+        - value_selector:
+          - '17423718913080'
+          - text
+          variable: GDP
+        - value_selector:
+          - '17423719674040'
+          - text
+          variable: 城镇化进程
+        - value_selector:
+          - '17423720077730'
+          - text
+          variable: 货币政策
+        - value_selector:
+          - '17423720372840'
+          - text
+          variable: 人均可支配收入
+        - value_selector:
+          - '1740706001095'
+          - type
+          variable: type
+        selected: false
+        title: 查询成功-结束2
+        type: end
+      height: 297
+      id: '17423059320070'
+      position:
+        x: 3366.8495015639824
+        y: 358.84099674813166
+      positionAbsolute:
+        x: 3366.8495015639824
+        y: 358.84099674813166
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: searxng
+        provider_name: searxng
+        provider_type: builtin
+        selected: false
+        title: SearXNG 搜索货币政策
+        tool_configurations:
+          search_type: general
+        tool_label: SearXNG 搜索
+        tool_name: searxng_search
+        tool_parameters:
+          query:
+            type: mixed
+            value: 最新货币政策变化
+        type: tool
+      height: 89
+      id: '17423064106130'
+      position:
+        x: 2546.3551736064187
+        y: 657.3162028161446
+      positionAbsolute:
+        x: 2546.3551736064187
+        y: 657.3162028161446
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: searxng
+        provider_name: searxng
+        provider_type: builtin
+        selected: false
+        title: SearXNG 搜索人均可支配收入
+        tool_configurations:
+          search_type: general
+        tool_label: SearXNG 搜索
+        tool_name: searxng_search
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#env.city#}}人均可支配收入'
+        type: tool
+      height: 89
+      id: '17423707615890'
+      position:
+        x: 2546.3551736064187
+        y: 770.3355767775506
+      positionAbsolute:
+        x: 2546.3551736064187
+        y: 770.3355767775506
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1742293480850'
+          - json
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5-32b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: fb99ec73-a989-4626-a688-4018ff355df5
+          role: system
+          text: '#角色
+
+            你是一名专业信息萃取师，擅长从多个新闻内容中总结提炼出一段不超过50个字的核心内容：
+
+            #任务
+
+            如遇数据冲突，优先采用最新/最权威表述，直接输出核心内容，不要输出多余解释。'
+        - id: 85f1a130-db68-48dc-b8ad-bcb60afb88f9
+          role: user
+          text: '{{#context#}}'
+        selected: false
+        title: 提取核心内容-房地产政策
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1742371396427'
+      position:
+        x: 2863.417635487934
+        y: 197.86103163383876
+      positionAbsolute:
+        x: 2863.417635487934
+        y: 197.86103163383876
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '17422937330100'
+          - json
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5-32b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: fb99ec73-a989-4626-a688-4018ff355df5
+          role: system
+          text: '#角色
+
+            你是一名专业信息萃取师，擅长从多个新闻内容中总结提炼出一段不超过50个字的核心内容：
+
+            #任务
+
+            如遇数据冲突，优先采用最新/最权威表述，直接输出核心内容，不要输出多余解释。'
+        - id: 85f1a130-db68-48dc-b8ad-bcb60afb88f9
+          role: user
+          text: '{{#context#}}'
+        selected: false
+        title: 提取核心内容-人口增长率
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '17423717283580'
+      position:
+        x: 2863.417635487934
+        y: 317.38932737928536
+      positionAbsolute:
+        x: 2863.417635487934
+        y: 317.38932737928536
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '17422940067790'
+          - json
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5-32b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: fb99ec73-a989-4626-a688-4018ff355df5
+          role: system
+          text: '#角色
+
+            你是一名专业信息萃取师，擅长从多个新闻内容中总结提炼出一段不超过50个字的核心内容：
+
+            #任务
+
+            如遇数据冲突，优先采用最新/最权威表述，直接输出核心内容，不要输出多余解释。'
+        - id: 85f1a130-db68-48dc-b8ad-bcb60afb88f9
+          role: user
+          text: '{{#context#}}'
+        selected: false
+        title: 提取核心内容-GDP
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '17423718913080'
+      position:
+        x: 2863.417635487934
+        y: 427.29111443610554
+      positionAbsolute:
+        x: 2863.417635487934
+        y: 427.29111443610554
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '17422941174980'
+          - json
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5-32b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: fb99ec73-a989-4626-a688-4018ff355df5
+          role: system
+          text: '#角色
+
+            你是一名专业信息萃取师，擅长从多个新闻内容中总结提炼出一段不超过50个字的核心内容：
+
+            #任务
+
+            如遇数据冲突，优先采用最新/最权威表述，直接输出核心内容，不要输出多余解释。'
+        - id: 85f1a130-db68-48dc-b8ad-bcb60afb88f9
+          role: user
+          text: '{{#context#}}'
+        selected: false
+        title: 提取核心内容-城镇化进程
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '17423719674040'
+      position:
+        x: 2863.417635487934
+        y: 543.591260850487
+      positionAbsolute:
+        x: 2863.417635487934
+        y: 543.591260850487
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '17423064106130'
+          - json
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5-32b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: fb99ec73-a989-4626-a688-4018ff355df5
+          role: system
+          text: '#角色
+
+            你是一名专业信息萃取师，擅长从多个新闻内容中总结提炼出一段不超过50个字的核心内容：
+
+            #任务
+
+            如遇数据冲突，优先采用最新/最权威表述，直接输出核心内容，不要输出多余解释。'
+        - id: 85f1a130-db68-48dc-b8ad-bcb60afb88f9
+          role: user
+          text: '{{#context#}}'
+        selected: false
+        title: 提取核心内容-货币政策
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '17423720077730'
+      position:
+        x: 2863.417635487934
+        y: 657.3162028161446
+      positionAbsolute:
+        x: 2863.417635487934
+        y: 657.3162028161446
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '17423707615890'
+          - json
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5-32b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: fb99ec73-a989-4626-a688-4018ff355df5
+          role: system
+          text: '#角色
+
+            你是一名专业信息萃取师，擅长从多个新闻内容中总结提炼出一段不超过50个字的核心内容：
+
+            #任务
+
+            如遇数据冲突，优先采用最新/最权威表述，直接输出核心内容，不要输出多余解释。'
+        - id: 85f1a130-db68-48dc-b8ad-bcb60afb88f9
+          role: user
+          text: '{{#context#}}'
+        selected: false
+        title: 提取核心内容-人均可支配收入
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '17423720372840'
+      position:
+        x: 2863.417635487934
+        y: 770.3355767775506
+      positionAbsolute:
+        x: 2863.417635487934
+        y: 770.3355767775506
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -1026.7110361364184
+      y: -98.9608676520188
+      zoom: 0.7696221479334976

@@ -1,0 +1,1058 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 数据库问答、可视化展示、Excel报表下载
+  use_icon_as_answer_icon: true
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.0.29@90bdd91665a9b5c63f3a2a964071141f29033db9b742c6c1d741430859ec3e0a
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai_api_compatible:0.0.16@d41b09aca46cdd3876f70b4c91d464c4588fc0bdc844ced6ee426283ead6ce8e
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/searxng:0.0.5@09189359ac9d5f073550169bd1e9f704ff6623a258b20596fd862d5576c0eaea
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: 您好，您想查询什么数据呢？ 您可能想问：
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - 市本级存量房最近5年的销售走势
+    - 2020年洛阳市本级的期房销售情况
+    - 2022年各区县商品现房的销售套数占比分析
+    - 请帮我统计20年到24年，洛阳市本级和区县的销售情况，把区县的数据进行汇总计算。
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: question-classifier
+      id: 1743035879000-source-1743036056326-target
+      selected: false
+      source: '1743035879000'
+      sourceHandle: source
+      target: '1743036056326'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1743036056326-2-1743036774058-target
+      selected: false
+      source: '1743036056326'
+      sourceHandle: '2'
+      target: '1743036774058'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 1743036774058-source-1743036816810-target
+      selected: false
+      source: '1743036774058'
+      sourceHandle: source
+      target: '1743036816810'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1743036816810-source-1743036905963-target
+      selected: false
+      source: '1743036816810'
+      sourceHandle: source
+      target: '1743036905963'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: 1743037093776-source-1743038870416-target
+      selected: false
+      source: '1743037093776'
+      sourceHandle: source
+      target: '1743038870416'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1743040136218-source-answer-target
+      selected: false
+      source: '1743040136218'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: tool
+      id: 1743037009548-source-1743040666669-target
+      selected: false
+      source: '1743037009548'
+      sourceHandle: source
+      target: '1743040666669'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 1743040666669-source-1743037093776-target
+      selected: false
+      source: '1743040666669'
+      sourceHandle: source
+      target: '1743037093776'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: if-else
+      id: 1743043563761-source-1743052454654-target
+      selected: false
+      source: '1743043563761'
+      sourceHandle: source
+      target: '1743052454654'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1743052454654-true-1743040136218-target
+      selected: false
+      source: '1743052454654'
+      sourceHandle: 'true'
+      target: '1743040136218'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1743052454654-false-1743064555369-target
+      selected: false
+      source: '1743052454654'
+      sourceHandle: 'false'
+      target: '1743064555369'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1743036056326-1743036482395-1743071688914-target
+      selected: false
+      source: '1743036056326'
+      sourceHandle: '1743036482395'
+      target: '1743071688914'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1743036056326-1743036456741-1743071688914-target
+      source: '1743036056326'
+      sourceHandle: '1743036456741'
+      target: '1743071688914'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1743071688914-source-1743036697386-target
+      source: '1743071688914'
+      sourceHandle: source
+      target: '1743036697386'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1743036056326-1743036173620-1743037009548-target
+      source: '1743036056326'
+      sourceHandle: '1743036173620'
+      target: '1743037009548'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: llm
+      id: 1743038870416-source-1743153958889-target
+      source: '1743038870416'
+      sourceHandle: source
+      target: '1743153958889'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1743153958889-source-1743154139326-target
+      source: '1743153958889'
+      sourceHandle: source
+      target: '1743154139326'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: answer
+      id: 1743040666669-source-1743324072935-target
+      source: '1743040666669'
+      sourceHandle: source
+      target: '1743324072935'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: 1743153958889-source-1744366306838-target
+      source: '1743153958889'
+      sourceHandle: source
+      target: '1744366306838'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: code
+      id: 1744366306838-source-1743043563761-target
+      source: '1744366306838'
+      sourceHandle: source
+      target: '1743043563761'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 53
+      id: '1743035879000'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1743040136218.text#}}
+
+
+          {{#1743043563761.output_echarts#}}'
+        desc: ''
+        selected: false
+        title: 直接回复-数据查询成功
+        type: answer
+        variables: []
+      height: 123
+      id: answer
+      position:
+        x: 2987.2676200816413
+        y: 398.3051806675653
+      positionAbsolute:
+        x: 2987.2676200816413
+        y: 398.3051806675653
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        classes:
+        - id: '2'
+          name: 用户提问需要联网搜索回答
+        - id: '1743036173620'
+          name: 用户想要统计房地产交易系统的数据
+        - id: '1743036456741'
+          name: 用户提问与房地产市场没有任何关系
+        - id: '1743036482395'
+          name: 用户提问涉及证件号码或联系方式隐私
+        desc: ''
+        instruction: "##角色\n你是用户意图识别专家，你为房地产交易系统服务，主要工作是为后续的数据查询统计提供前置服务\n##任务\n根据用户的提问，识别用户的意图：\n\
+          1. 如果用户想要从互联网查询可能影响房地产市场的因素，输出分类：\"不需要生成SQL，但需要联网搜索回答\"\n  - 因素可能包括：GDP、人均可支配收入、货币政策、房地产政策、人口增长率等\n\
+          2. 如果用户的问题与房地产市场没有任何关系，输出分类：提问与房地产市场没有任何关系\n  -示例：\n  -- 你是谁？\n  -- 你是什么模型？\n\
+          3. 如果用户想要统计房地产交易数据，那么输出分类：需要生成SQL\n  - 注意：一定是用户想要统计房地产交易系统的数据时，你才能输出“需要生成SQL”的分类，否则严禁输出该分类。\n\
+          4. 如果用户想要查询隐私数据，隐私仅限于：证件号码、联系方式，输出分类：涉及证件号码或联系方式隐私\n  - 隐私仅限于证件号码、联系方式；\n\
+          \  - 全称或名称不属于隐私"
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0
+          mode: chat
+          name: DeepSeek-V3
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        query_variable_selector:
+        - '1743035879000'
+        - sys.query
+        selected: false
+        title: 问题分类器
+        topics: []
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 247
+      id: '1743036056326'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1743071688914.text#}}'
+        desc: ''
+        selected: false
+        title: 拒绝响应
+        type: answer
+        variables: []
+      height: 104
+      id: '1743036697386'
+      position:
+        x: 1010.3242871405715
+        y: 952.146710738537
+      positionAbsolute:
+        x: 1010.3242871405715
+        y: 952.146710738537
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: searxng
+        provider_name: searxng
+        provider_type: builtin
+        selected: false
+        title: SearXNG 搜索
+        tool_configurations:
+          search_type: general
+        tool_label: SearXNG 搜索
+        tool_name: searxng_search
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#sys.query#}}'
+        type: tool
+      height: 89
+      id: '1743036774058'
+      position:
+        x: 698.8351224855105
+        y: 100.58051184797182
+      positionAbsolute:
+        x: 698.8351224855105
+        y: 100.58051184797182
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: 用户提问：{{#sys.query#}}。互联网搜索结果：{{#1743036774058.json#}}
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 5
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: DeepSeek-V3
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 10149a68-46de-426d-992e-89763d5e3816
+          role: system
+          text: '#角色
+
+            你是一名专业信息萃取师，擅长从多个互联网搜索结果中总结提炼出一段不超过100个字的核心内容：
+
+            #任务
+
+            - 提取内容要尽量贴合用户的提问
+
+            - 如遇数据冲突，优先采用最新/最权威表述，直接输出核心内容，不要输出多余解释。'
+        selected: false
+        title: LLM-提取互联网搜索结果
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1743036816810'
+      position:
+        x: 1002.8351224855105
+        y: 100.58051184797182
+      positionAbsolute:
+        x: 1002.8351224855105
+        y: 100.58051184797182
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1743036816810.text#}}'
+        desc: ''
+        selected: false
+        title: 回复互联网搜索结果
+        type: answer
+        variables: []
+      height: 104
+      id: '1743036905963'
+      position:
+        x: 1306.8351224855105
+        y: 100.58051184797182
+      positionAbsolute:
+        x: 1306.8351224855105
+        y: 100.58051184797182
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        dataset_ids:
+        - FONR/3FheDR1KbHS1/gmWLeCW/WXu88wBCKEUJn7IrzGACvEuR8uwwHyrDs7+K4L
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: gte-rerank
+            provider: langgenius/tongyi/tongyi
+          score_threshold: 0.2
+          top_k: 10
+        query_variable_selector:
+        - sys
+        - query
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索-示例SQL
+        type: knowledge-retrieval
+      height: 91
+      id: '1743037009548'
+      position:
+        x: 772.8803365810039
+        y: 359.2356089636376
+      positionAbsolute:
+        x: 772.8803365810039
+        y: 359.2356089636376
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: 当前时间：{{#1743040666669.text#}}，用户输入:"{{#sys.query#}}"，问题与SQL示例：{{#1743037009548.result#}}
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 2
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: DeepSeek-V3
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 8974aa9e-157b-407d-9ede-3c1050dc3bc3
+          role: system
+          text: "# 角色与任务\n## 角色\n- 精通SQL语言的数据库专家，尤其擅长ClickHouse数据库查询\n- 精通数学知识，善于解读和分析数据\n\
+            \n## 任务\n1. 根据用户输入和上下文内容\n2. 优先参考问题与SQL语句示例\n3. 改造或编写SQL查询\n4. 输出参数\n\n\
+            \n## 关键步骤\n1. **学习数据结构与存储逻辑**\n   - 从\"数据结构描述\"学习`ly_fwxsxx`表结构\n   -\
+            \ 从\"数据库表数据存储逻辑\"了解存储逻辑\n\n2. **判断查询范围和计算公式** \n   \n3. **参考问题与SQL语句示例**\n\
+            \   - 如果示例SQL与用户的需求很接近，则尽量少改动SQL结构，修改where子句即可，且把换行符替换为空格，没有参考则自主编写\n\
+            \    \n4. **SQL编写规则**\n   - 确保SQL语法支持ClickHouse24.12版本\n   - 优先单条SQL\n\
+            \   - 禁用`WITH ROLLUP/CUBE/TOTALS`进行求和/累加，可以查到明细数据后使用你的数学知识求和\n   - 子查询返回的字段尽量不要使用中文别名，外部SQL返回的字段必须使用中文别名，且必须用双引号括起来(例如：as\
+            \ \"面积\")，否则SQL执行会报错\n   -- 如果子查询也使用中文作为别名，那么外部SQL引用子查询的字段时，需要用双引号括起来(例如：t.\"\
+            面积\")\n   - 中文别名必须用双引号括起来(例如：as \"面积\")，否则SQL执行会报错   \n   - 聚合函数运算结果的别名不能是聚合函数中使用的字段名\n\
+            \   - 确保括号闭合\n   - 得到纯净可执行SQL → 无注释、无换行符\n\n5. **自检SQL**\n   - 检查是否已经根据去重规则对业务数据、房屋数据、权利人数据进行了去重，没有则修改SQL\n\
+            \   \n6. **生成Excel判断**\n   - 用户明确要求 → `write_excel=1`\n   - 否则 → `write_excel=0`\n\
+            \n6. **整理参数**\n   - sqls：生成的sql语句，多条sql使用分号(;)隔开\n   - queryContents：由每条sql的查询内容通过分号(;)拼接得到，注意：每条sql的查询内容不允许有分号\n\
+            \   - write_excel\n   - think：你的思考过程，如果有公式，思考过程中尽量包括公式，思考过程要稍微详细一些\n \
+            \  \n   \n7. **输出参数**\n   - 直接输出标准JSON\n   - 确保JSON格式严格正确（无逗号错误/引号缺失）\n\
+            \   - 直接输出json普通字符串即可，严禁使用markdown语法```json，不要有换行符\n   - 输出示例：{\"sqls\"\
+            :\"select column_name1,column_name2 from ly_fwxsxx where 1=2;select column_name3,column_name4\
+            \ from ly_fwxsxx where 2=3\",\"queryContents\":\"sql查询内容;sq2查询内容\",\"\
+            write_excel\":0,\"think\":\"思考过程\"}\n\t\n\n# 数据库表结构描述\n## 表名称：`ly_fwxsxx`\n\
+            ### 字段列表\n| 字段名         | 类型   | 描述                                  \
+            \                               |\n|----------------|--------|----------------------------------------------------------------------|\n\
+            | sheng           \t| 字符串 | 省名称                                      \
+            \                 |\n| shi         \t\t| 字符串 | 市名称                   \
+            \                                    |\n| qx         \t\t| 字符串 | 区县名称\
+            \                                                       |\n| nf      \
+            \       \t| 字符串 | 销售年份                                     |\n| fl   \
+            \    \t\t\t| 字符串 | 房类（期房/现房/存量房）                                     \
+            \                  |\n| xsts           \t| 整数\t| 销售套数                \
+            \                                       |\n| xsdj           \t| 小数 | 销售单价（元）\
+            \                                                           |\n| pjtxszj\
+            \          \t| 小数 | 平均套建筑面积（平方米）                                     \
+            \        |\n| xszj         \t\t| 小数 | 销售总价（元）                        \
+            \                               |\n| sm         \t\t| 字符串 | 说明       \
+            \                                                |\n\n\n# 数据库表数据存储逻辑\n\
+            1. 存储了洛阳市市本级和各区县在各年份的销售情况\n-- 数据库中所有的数据都属于洛阳市\n2. 包括期房、现房、存量房\n3. 区县名称、销售年份、房类\
+            \ 联合唯一，构成了数据库记录的唯一标识，因此你不需要group by qx,nf,fl\n4. 理论上：\n-- 总建筑面积 = 销售套数\
+            \ * 平均套建筑面积\n-- 平均套建筑面积 = 总建筑面积 ÷ 销售套数\n-- 销售总价 = 总建筑面积 * 销售单价 \n-- 销售单价\
+            \ = 销售总价 ÷ 总建筑面积\n-- 在汇总不同区县的数据时:\n\t-- 先计算得到每个区县的销售建筑面积，然后求和得到所有区县的总销售建筑面积，最后再根据总销售建筑面积计算现售单价和平均套建筑面积\n\
+            \t-- sql参考：ROUND(sum(xszj)/sum(xsts*pjtxszj),2) as \"销售单价\",sql参考：ROUND(sum(xsts*pjtxszj)/sum(xsts),2)\
+            \ as \"平均套建筑面积\"\n\t-- 注意，聚合函数运算结果的别名不能是聚合函数中使用的字段名，错误示例：ROUND(sum(xsts*pjtxszj)/sum(xsts),2)\
+            \ as pjtxszj\n\t-- 不能简单的对不同区县的数据求平均值，必须按照上述公式进行计算，错误的计算方式：avg(xsdj) as\
+            \ \"销售单价\",avg(pjtxszj) as \"平均套建筑面积\"\n\t\n\t\t\n# 编写SQL时的注意事项\n1. **字段使用**：\n\
+            \   - 仅使用表结构描述中列出的字段\n   - 只能使用符合字段类型的运算符\n   -- 例如nf(年份)字段是字符串类型，因此使用字段值查询时，要参考nf\
+            \ > '2022'\n   - 严格大小写敏感\n\n2. **特别注意：数据统计范围判断**：\n   - 如果用户只提到“区县”，而不是“各区县”（没有“各”字说明要汇总计算区县的数据），那么就把市本级以外所有区县的数据进行汇总计算，不需要返回每个区县的数据，此时可以使用“区县”作为区县泛化名称。\n\
+            \t\t-- 用户特别指出让你汇总区县的数据时，也采用此逻辑\n\t\t-- 此时最多只可能会返回两个区县名称，分别是“市本级”和“区县”\n\
+            \t\t-- 也就是说要把区县的数据汇总计算后作为一个条目返回\n\t\t-- 同时统计市本级数据、区县汇总数据时，建议使用case when实现上述逻辑\n\
+            \   - 如果用户让你统计“各区县”的数据，“各”字的含义很重要，表示每个区县的数据都要返回，此时你需要group by qx\n   -\
+            \ SQL返回的字段要尽量包含区县名称（汇总区县数据时，泛化名称“区县”也可以当作是区县名称返回）\n   \n3. **默认排序规则**：\n\
+            \   - 如果使用了union查询，那么要把union的查询结果作为一个子查询(可命名为t)，然后在外部对子查询结果进行排序,这样才能保证排序的准确性\n\
+            \t\t-- 示例：select * from (subQuery1 union all subQuery2) t order by t.column1,t.column2\n\
+            \   - 如果用户没有明确指定如何排序，那么默认按区县名称、年份、房类升序排序\n\n   \n4. **返回字段的顺序规则**：\n \
+            \  - 尽量按照 区县名称、年份、房类依次返回，也就是说尽量按照建表语句中的字段顺序返回\n   \n5. **保留小数位数**：\n \
+            \  - 乘法或除法运算均保留两位小数\n\n\n   \n现在，请根据以上逻辑和要求，分析用户需求，并生成符合格式要求的JSON普通字符串数据，不要换行符，不要使用markdown语法。"
+        selected: true
+        title: LLM 生成查询SQL
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1743037093776'
+      position:
+        x: 1092.9486080612849
+        y: 359.2356089636376
+      positionAbsolute:
+        x: 1092.9486080612849
+        y: 359.2356089636376
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\nimport ast\nimport re\n\ndef convert_markdown_json_to_standard(markdown_json_str):\n\
+          \    \"\"\"\n    将markdown格式的json字符串转换为标准json字符串\n    如果输入已经是标准json字符串则直接返回\n\
+          \    \n    参数：\n    markdown_json_str (str): markdown格式的json字符串\n    \n\
+          \    返回：\n    str: 标准json字符串\n    \"\"\"\n    try:\n        # 先尝试直接解析为标准JSON\n\
+          \        json.loads(markdown_json_str)\n        return markdown_json_str\
+          \  # 已经是标准JSON\n    except json.JSONDecodeError:\n        # 使用正则表达式提取json内容\n\
+          \        match = re.match(r'^```json\\n(.*)\\n```$', markdown_json_str,\
+          \ re.DOTALL)\n        if match:\n            json_content = match.group(1).strip()\n\
+          \            # 使用ast.literal_eval安全解析\n            parsed_data = ast.literal_eval(json_content)\n\
+          \            return json.dumps(parsed_data, ensure_ascii=False, indent=4)\n\
+          \        else:\n            # 如果正则不匹配，尝试原始分割方法\n            json_content\
+          \ = markdown_json_str.split(\"```json\\n\")[1].strip().rstrip(\"```\")\n\
+          \            parsed_data = ast.literal_eval(json_content)\n            return\
+          \ json.dumps(parsed_data, ensure_ascii=False, indent=4)\n\ndef main(queryObjectStr:\
+          \ str) -> dict:\n    queryObjectStr = convert_markdown_json_to_standard(queryObjectStr)\n\
+          \    # 解析 queryObjectStr 配置字符串为 JSON 对象\n    queryObject = json.loads(queryObjectStr)\n\
+          \    \n    \n    return {\"sqls\": queryObject['sqls'],\"queryContents\"\
+          :queryObject['queryContents'],\"write_excel\":queryObject['write_excel'],\"\
+          think\":queryObject['think']}"
+        code_language: python3
+        desc: ''
+        outputs:
+          queryContents:
+            children: null
+            type: string
+          sqls:
+            children: null
+            type: string
+          think:
+            children: null
+            type: string
+          write_excel:
+            children: null
+            type: number
+        selected: false
+        title: 代码执行 转查询JSON对象
+        type: code
+        variables:
+        - value_selector:
+          - '1743037093776'
+          - text
+          variable: queryObjectStr
+      height: 53
+      id: '1743038870416'
+      position:
+        x: 1217.379716287642
+        y: 590.3451337147277
+      positionAbsolute:
+        x: 1217.379716287642
+        y: 590.3451337147277
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1743043563761'
+          - llm_input_str
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: DeepSeek-V3
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: c8ff91a5-da79-4bcf-a22d-61b056c7e52f
+          role: system
+          text: "##角色\n精通数学知识，善于解读和分析数据\n##任务\n根据用户提供的json字符串内容，对内容进行解读和分析，以中文呈现、解读和分析结果\n\
+            - 首先解析和呈现数据库查询结果，即database_result节点的内容\n- 如果database_result节点中包括有效的excel_url，那么你要提示用户点击链接下载包含完整数据的excel表格，并告知用户总记录数，如果无有效的excel_url，那么你无需向提及Excel\n\
+            - 如果database_result中包含有效的数据库查询结果（数据不为空），你再判断internet_result节点：\n-- 当有有效信息时，结合互联网查询结果来分析数据库查询结果的原因和预测未来\n\
+            -- 当无有效信息时，仅使用数据库查询结果生成回答，避免使用\"互联网\"相关表述\n## 数据呈现、解读和分析要求\n1. **格式规范**：\n\
+            \   - 小数保留两位\n   - 使用逗号分隔符（1,234）\n   - 百分比格式（12.36%）\n   - 日期格式：`YYYY-MM-DD`\n\
+            \   - 列出详细数据,优先以表格方式列出数据\n   - 如果是分析时序数据，且时序数据包括当前年月的话，那么当前年月数据后续可能还会陆续产生，你不能武断得出当前年月数据一定比历史数据小\n\
+            \t\t--例如：\n\t\t---时序数据中包含25年的数据，如果当前年也是25年，那么25年的数据后续可能还会陆续产生\n\t\t---时序数据中包含25年3月的数据，如果当前年月也是25年3月，那么25年3月的数据后续可能还会陆续产生\n\
+            \   - 阅读查询结果，结合历史对话、互联网搜索结果（如果有）进行呈现、解读、分析、预测。\n   \n2. **Excel下载**：\n\
+            \   - 提供有效`excel_url`链接\n## 其他注意事项\n1. 直接输出你的分析结果就行，不要包含类似“根据提供的JSON字符串”等开发技术的内容\n\
+            2. 数据为空时回复\"没有查询到相关数据\"\n3. 不需要生成任何的图表\n\n"
+        - id: 3058792c-df84-4d45-8e60-40a2f6fe7dbc
+          role: user
+          text: 当前时间{{#1743040666669.text#}}。用户问题：{{#sys.query#}}。数据库查询结果：{{#context#}}
+        selected: false
+        title: LLM 分析查询结果
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1743040136218'
+      position:
+        x: 2614.9615052030363
+        y: 398.3051806675653
+      positionAbsolute:
+        x: 2614.9615052030363
+        y: 398.3051806675653
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: time
+        provider_name: time
+        provider_type: builtin
+        selected: false
+        title: 获取当前时间
+        tool_configurations:
+          format: '%Y-%m-%d %H:%M:%S'
+          timezone: Asia/Shanghai
+        tool_label: 获取当前时间
+        tool_name: current_time
+        tool_parameters: {}
+        type: tool
+      height: 115
+      id: '1743040666669'
+      position:
+        x: 794.4086015012748
+        y: 590.3451337147277
+      positionAbsolute:
+        x: 794.4086015012748
+        y: 590.3451337147277
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(resultArray) -> dict:\n    queryResult = resultArray[0]\n\
+          \    llm_input = {}\n    if queryResult.get('type') != 'success':\n    \
+          \    error_msg = queryResult.get('error_msg')\n        llm_input['database_result']\
+          \ = error_msg\n        llm_input_str = json.dumps(llm_input, indent=2, ensure_ascii=False)\n\
+          \        return {\"llm_input_str\":llm_input_str,\"output_echarts\":\"\"\
+          ,\"type\":\"fail\"}\n    database_result = queryResult.get('result')\n \
+          \   excel_url = queryResult.get('excel_url')\n    output_echarts = queryResult.get('output_echarts')\n\
+          \    \n    llm_input['database_result'] = database_result\n    llm_input['excel_url']\
+          \ = excel_url\n    \n    del queryResult['result']\n    del queryResult['excel_url']\n\
+          \    del queryResult['output_echarts']\n    internet_result = queryResult\n\
+          \    llm_input['internet_result'] = internet_result\n    llm_input_str =\
+          \ json.dumps(llm_input, indent=2, ensure_ascii=False)\n    return {\"llm_input_str\"\
+          : llm_input_str,\"output_echarts\":output_echarts,\"type\":\"success\"}"
+        code_language: python3
+        desc: ''
+        outputs:
+          llm_input_str:
+            children: null
+            type: string
+          output_echarts:
+            children: null
+            type: string
+          type:
+            children: null
+            type: string
+        selected: false
+        title: 重构查询结果
+        type: code
+        variables:
+        - value_selector:
+          - '1744366306838'
+          - json
+          variable: resultArray
+      height: 53
+      id: '1743043563761'
+      position:
+        x: 1976.199584335442
+        y: 598.051992391556
+      positionAbsolute:
+        x: 1976.199584335442
+        y: 598.051992391556
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: 1f7a65d4-2f2f-4ba6-90d2-9334ad302e1a
+        provider_name: 获取查询结果
+        provider_type: workflow
+        selected: false
+        title: 获取查询结果
+        tool_configurations: {}
+        tool_label: 获取查询结果
+        tool_name: query_database
+        tool_parameters:
+          queryContents:
+            type: mixed
+            value: '{{#1743038870416.queryContents#}}'
+          question:
+            type: mixed
+            value: '{{#sys.query#}}'
+          sqls:
+            type: mixed
+            value: '{{#1743038870416.sqls#}}'
+          write_excel:
+            type: variable
+            value:
+            - '1743038870416'
+            - write_excel
+        type: tool
+      height: 53
+      id: '1744366306838'
+      position:
+        x: 1821.9672458889224
+        y: 398.3051806675653
+      positionAbsolute:
+        x: 1821.9672458889224
+        y: 398.3051806675653
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 34c238a4-f0a4-4cec-b4da-a9ace4f81eec
+            value: success
+            varType: string
+            variable_selector:
+            - '1743043563761'
+            - type
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 125
+      id: '1743052454654'
+      position:
+        x: 2306.6517009771533
+        y: 414.34791382781026
+      positionAbsolute:
+        x: 2306.6517009771533
+        y: 414.34791382781026
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '在数据查询过程中遇到报错。报错原因：
+
+          {{#1743043563761.llm_input_str#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 -数据查询失败
+        type: answer
+        variables: []
+      height: 120
+      id: '1743064555369'
+      position:
+        x: 2614.9615052030363
+        y: 534.3051806675653
+      positionAbsolute:
+        x: 2614.9615052030363
+        y: 534.3051806675653
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: DeepSeek-V3
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 46045fb4-2211-4efd-a4c4-ad31757cd7b4
+          role: system
+          text: '##角色
+
+            你是房地产交易系统的智能助手，当用户提出非常规问题时由你负责响应
+
+            ##任务
+
+            - 我会告知你用户的原始问题和前置系统判别的结果
+
+            - 如果用户的提问涉及隐私，请礼貌的引导用户该如何提问
+
+            - 如果用户问你的身份，你要如实告知
+
+            - 如果用户的提问与房地产市场没有任何关系，则回复："您的问题不在我的业务范围内，您可以参考平台预设的问题进行提问"
+
+            用户原始问题：{{#sys.query#}}
+
+            判别结果：{{#1743036056326.class_name#}}'
+        selected: false
+        title: 优化回复
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1743071688914'
+      position:
+        x: 709.3338838416955
+        y: 952.146710738537
+      positionAbsolute:
+        x: 709.3338838416955
+        y: 952.146710738537
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1743038870416'
+          - think
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: DeepSeek-V3
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 3f9c5d4e-bab2-48a2-9f7a-e1b83189b209
+          role: system
+          text: '##任务
+
+            用户会给你一段思考内容，你首先要去掉思考内容中的特殊符号，把它们当做你自己的思考内容，然后整理这段思考内容，使之更有层次感，并且在最后追加一句形如“已完成SQL语句的编写，接下来，我要执行SQL语句获取查询结果”的内容。
+
+            ##注意
+
+            - 不要输出你自己的思考过程
+
+            - 不要输出类似“思考内容整理”的标题
+
+            - 直接输出整理后的思考内容
+
+            '
+        - id: 2697307f-a3b4-43c8-898b-80053379d6bd
+          role: user
+          text: '{{#context#}}'
+        selected: false
+        title: LLM 整理思考内容
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1743153958889'
+      position:
+        x: 1503.1793309837908
+        y: 373.233957438551
+      positionAbsolute:
+        x: 1503.1793309837908
+        y: 373.233957438551
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1743153958889.text#}}
+
+
+          '
+        desc: ''
+        selected: false
+        title: 回复思考过程
+        type: answer
+        variables: []
+      height: 104
+      id: '1743154139326'
+      position:
+        x: 1584.5388134643288
+        y: 561.4750113935472
+      positionAbsolute:
+        x: 1584.5388134643288
+        y: 561.4750113935472
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '请稍等，我正在思考...
+
+          '
+        desc: ''
+        selected: false
+        title: 思考中
+        type: answer
+        variables: []
+      height: 101
+      id: '1743324072935'
+      position:
+        x: 1144.2758858026334
+        y: 722.7087716809804
+      positionAbsolute:
+        x: 1144.2758858026334
+        y: 722.7087716809804
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -304.71650292159484
+      y: 29.32817619562303
+      zoom: 0.5143463897118438

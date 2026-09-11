@@ -1,0 +1,266 @@
+注意：
+	所有的接口在调用时需要在http header中增加参数_from，值域：PC、Mobile，表示不同的使用终端
+	接口根路径：http://ip:port/api/
+	
+
+1登录（暂未启用，目前用autoLogin替代，改为自动注册、登录模式）
+11请求方法：POST
+12接口名称：login
+13入参：
+	{"account":"15208343404","password":"123456"}
+14出参：
+	{
+		"uuid": null,
+		"type": "success",
+		"data": {
+			"name": "李祥",
+			"_token": "bwaF1vdkOrXOWkx88kdJjkDCSb+/ZEmXqyur1dT92tpkauzL66iBX5GWLzVeryqb"
+		}
+	}
+	
+2获取开场白和预设问题
+21请求方法：GET
+22接口名称：parameters
+23入参：
+	无
+24出参：
+	{
+		"uuid": null,
+		"type": "success",
+		"data": {
+			"opening_statement": "您好，您想查询什么数据呢？ 您可能想问：",
+			"suggested_questions": [
+				"2020年洛阳市本级的期房销售情况",
+				"2024年洛阳市本级各房类的销售总面积对比分析",
+				"请帮我生成2024年市本级和各区县的商品现房销售情况报表",
+				"市本级存量房最近5年的销售走势，统计指标：销售面积、销售单价",
+				"请帮我统计20年到24年，洛阳市本级和区县各房类的销售情况，把区县的数据进行汇总计算。"
+			],
+			"inputForms":[{"type":"控件类型","label":"控件展示标签名","variable":"控件id","required":"是否必填","maxLength":"最大长度","defaultValue":"默认值","options":["选项"]}]
+		}
+	}
+	
+	
+3发送对话消息
+31请求方法：POST
+32接口名称：chat
+33入参：
+	{"conversation_id":"会话id，首次对话可不传，接下来的对话必传","query":"你好,你擅长什么工作"}
+34出参（流式输出）：注意当event的值是agent_message表示是AI回复的消息（会有多条）；当event的值是message_end表示AI回复已完成（只有一条）；当event的值是message表示本次api调用已结束（只有一条）
+	data:{"event":"agent_message","conversation_id":"dccef6a5-5dba-4824-830e-93314a9f1198","message_id":"b436eacf-e5d3-44d9-83d4-9fa99248fb2b","created_at":1750836077,"task_id":"cc6dd1ea-9e64-474a-a5d6-6820941e5f59","id":"b436eacf-e5d3-44d9-83d4-9fa99248fb2b","answer":"你好"}
+	data:{"event":"message_end","conversation_id":"dccef6a5-5dba-4824-830e-93314a9f1198","message_id":"b436eacf-e5d3-44d9-83d4-9fa99248fb2b","created_at":1750836077,"task_id":"cc6dd1ea-9e64-474a-a5d6-6820941e5f59","id":"b436eacf-e5d3-44d9-83d4-9fa99248fb2b","metadata":{"usage":{"prompt_tokens":2636,"prompt_unit_price":"0.0","prompt_price_unit":"0.0","prompt_price":"0.0026360","completion_tokens":202,"completion_unit_price":"0.0","completion_price_unit":"0.0","completion_price":"0.0004040","total_tokens":0,"total_price":"0.0030400","currency":"USD","latency":0.0}},"files":null}
+	data:{"event":"message","conversation_id":"dccef6a5-5dba-4824-830e-93314a9f1198","message_id":"b436eacf-e5d3-44d9-83d4-9fa99248fb2b"}
+35提示：
+	后续的勾选分享功能，需要把勾选的message_id（每个问题和答案是成对的，只有一个message_id值）传给分享接口;
+	如果要调用后续的停止响应接口，需要传入task_id
+	
+	
+4获取会话列表，支持分页获取
+41请求方法：GET
+42接口名称：conversations
+43入参：
+	last_id：查第一页数据时不用传，查后续页的数据时，传当前页最后面一条记录的id
+44出参：
+	{
+		"uuid": null,
+		"type": "success",
+		"data": {
+			"limit": 20,
+			"hasMore": false,
+			"conversations": [
+				{
+					"id": "4199afc5-99c7-4c2c-83ec-a64576cc4275",
+					"name": "New conversation",
+					"inputs": {},
+					"created_at": 1750775732,
+					"updated_at": 1750775732
+				},
+				{
+					"id": "5551405d-644d-437d-911f-1d18e95a2dd3",
+					"name": "New conversation",
+					"inputs": {},
+					"created_at": 1750775378,
+					"updated_at": 1750775378
+				}
+			]
+		}
+	}
+
+
+
+5获取会话历史消息，支持分页获取
+51请求方法：GET
+52接口名称：messages
+53入参：
+	conversation_id：会话的id
+	first_id：查第一页数据时不用传，查后续页的数据时，传当前页第一条记录的id
+54出参：
+	{
+		"uuid": null,
+		"type": "success",
+		"data": {
+			"limit": 20,
+			"hasMore": false,
+			"messageVos": [
+				{
+					"id": "1a9821fd-9bc0-4188-919c-10c546abad58",
+					"conversation_id": "4199afc5-99c7-4c2c-83ec-a64576cc4275",
+					"query": "你好",
+					"inputs": {},
+					"answer": "你好！请问有什么可以帮您的吗？",
+					"created_at": 1750775732
+				}
+			]
+		}
+	}	
+
+	
+6停止响应
+61请求方法：POST
+62接口名称：stop
+63入参：
+	{"task_id":"cc6dd1ea-9e64-474a-a5d6-6820941e5f59"}
+64出参：
+	{
+		"uuid": null,
+		"type": "success",
+		"data": "success"
+	}
+	
+	
+7创建分享
+71请求方法：POST
+72接口名称：share
+73入参：
+	{"messageIds":["cd032bfd-21ae-4a00-a714-f80d5f8915a7","fabe968d-5221-441f-9a18-a8bf0ab88e9f","ec5a4b3e-2d95-4b4c-a9cd-6ba05905556a"]}
+74出参：
+	{
+		"uuid": null,
+		"type": "success",
+		"data": "049eed376e63"
+	}
+75提示：
+	调用成功时,data的值就是code，在创建分享链接时需要用到code。
+
+
+8查询分享
+81请求方法：GET
+82接口名称：share
+83入参：
+	code=049eed376e63
+84出参：
+	{
+		"uuid": null,
+		"type": "success",
+		"data": {
+			"messages": [
+				{
+					"id": "cd032bfd-21ae-4a00-a714-f80d5f8915a7",
+					"conversation_id": "0aecab2b-920b-464f-b795-40e1e36ddcd9",
+					"query": "你好,你擅长什么工作",
+					"inputs": {},
+					"answer": "你好！我擅长以下工作：\n\n1. **SQL查询与分析**：  \n   - 精通SQL语言，尤其擅长ClickHouse数据库查询。\n   - 能够根据用户需求编写、改造SQL语句，执行数据查询。\n   - 对查询结果进行详细解读、分析和可视化展示。\n\n2. **数据解读与呈现**：  \n   - 将查询结果以表格、图表等形式清晰呈现。\n   - 提供数据分析和趋势预测。\n\n3. **知识库检索**：  \n   - 能够从知识库中检索已有的SQL示例，快速响应用户需求。\n\n4. **数学计算与逻辑分析**：  \n   - 擅长处理复杂的数学计算和逻辑分析，确保数据准确性。\n\n5. **Excel报表生成**：  \n   - 根据用户需求生成Excel报表，并提供下载链接。\n\n如果你有任何与数据查询、分析或报表生成相关的问题，欢迎随时提问！",
+					"created_at": 1750875345000
+				},
+				{
+					"id": "fabe968d-5221-441f-9a18-a8bf0ab88e9f",
+					"conversation_id": "0aecab2b-920b-464f-b795-40e1e36ddcd9",
+					"query": "截止目前，期房的库存面积是多少？",
+					"inputs": {},
+					"answer": "截至2025年6月26日，期房的库存面积为 **29,593,165.21 平方米**。",
+					"created_at": 1750875450000
+				},
+				{
+					"id": "ec5a4b3e-2d95-4b4c-a9cd-6ba05905556a",
+					"conversation_id": "0aecab2b-920b-464f-b795-40e1e36ddcd9",
+					"query": "2024年，洛阳市本级各房类的销售总面积对比分析",
+					"inputs": {},
+					"answer": "### 2024年洛阳市本级各房类销售总面积对比分析\n\n以下是2024年洛阳市本级各房类的销售总面积数据：\n\n| 房类   | 销售总面积（平方米） |\n|--------|----------------------|\n| 存量房 | 2,323,258.65         |\n| 期房   | 981,463.35           |\n| 现房   | 920,828.69           |\n\n#### 数据分析：\n1. **存量房**的销售总面积最高，达到 **2,323,258.65 平方米**，占比约为 **55%**。\n2. **期房**的销售总面积为 **981,463.35 平方米**，占比约为 **23%**。\n3. **现房**的销售总面积为 **920,828.69 平方米**，占比约为 **22%**。\n\n#### 图表展示：\n以下为各房类销售总面积的占比饼图：\n\n```echarts\n{\n  \"title\": {\n    \"text\": \"销售总面积\"\n  },\n  \"legend\": {\n    \"data\": [\n      \"存量房\",\n      \"期房\",\n      \"现房\"\n    ]\n  },\n  \"toolbox\": {\n    \"show\": true,\n    \"feature\": {\n      \"saveAsImage\": {\n        \"show\": true\n      }\n    }\n  },\n  \"tooltip\": {\n    \"trigger\": \"item\"\n  },\n  \"series\": [\n    {\n      \"type\": \"pie\",\n      \"data\": [\n        {\n          \"name\": \"存量房\",\n          \"value\": 2323258.65\n        },\n        {\n          \"name\": \"期房\",\n          \"value\": 981463.35\n        },\n        {\n          \"name\": \"现房\",\n          \"value\": 920828.69\n        }\n      ]\n    }\n  ]\n}\n```\n\n#### 其他相关数据：\n- **人口增长**：2024年末洛阳市常住人口708.1万人，城镇化率68.39%。\n- **GDP**：2025年洛阳市GDP总量达到5128.4亿元，同比增长3.0%，在全国城市中排名第45位。\n- **城镇化进程**：洛阳是“一带一路”重要节点城市，城镇化率持续提升，2024年预计达65.88%。\n- **货币政策**：2025年，中国实施适度宽松的货币政策，以支持经济稳定增长和提振市场信心。\n- **人均可支配收入**：2023年洛阳市城镇居民人均可支配收入45727元，增长4.8%。\n\n如果需要更详细的数据或其他分析，请随时告知！",
+					"created_at": 1750875630000
+				}
+			]
+		}
+	}
+	
+9自动登录 （适合不需要权限控制的智能问数应用，每次进入聊天页面都必须先调用该接口获取_token）
+91请求方法：POST
+92接口名称：autoLogin
+93入参：
+	http header 中必须传_from
+	如果之前已经调用过该接口获取过_token，那么http header 中必须传_token；之前没有获取过则可不传_token
+94出参：
+	{
+		"uuid": null,
+		"type": "success",
+		"data": {
+			"name": "Guest_1751721256716",
+			"_token": "zj5E2VbWLEYh89ZYTI5FpOAAvsjOfWcYUJUM5zHA1CnHefDt0HW5NNkQtqM+9/MA"
+		}
+	}
+
+95提示：
+	当调用其他接口遇到type=needLogin，说明_token已失效，那么需要带上已失效的_token先调用autoLogin，拿到新的_token并保存到前端供后续使用。
+	
+
+	
+10获取下一轮建议问题列表，在AI回复完成后调用
+101请求方法：GET
+102接口名称：suggested-questions
+103入参：
+	message_id：AI最近一次回复的消息的message_id
+104出参：
+	{
+		"uuid": null,
+		"type": "success",
+		"data": ["建议问题1","建议问题2","建议问题3"]
+	}	
+
+11删除会话
+111请求方法：POST
+112接口名称：deleteConversation
+113入参：{"conversation_id":"要删除的会话id"}
+114出参：
+	{
+		"uuid": null,
+		"type": "success",
+		"data": "success"
+	}
+	
+12重命名会话
+121请求方法：POST
+122接口名称：renameConversation
+123入参：{"conversation_id":"要重命名的会话id","name":"会话的新名称"}
+124出参：
+	{
+		"uuid": null,
+		"type": "success",
+		"data": "success"
+	}
+	
+13单点登录（ssoToken模式）
+131请求方法：POST
+132接口名称：ssoLogin
+133入参：{"ssoToken":"用户在业务系统登录后生成的单点登录Token"}
+134出参：
+	{
+		"uuid": null,
+		"type": "success",
+		"data": {
+			"name": "李祥",
+			"_token": "bwaF1vdkOrXOWkx88kdJjkDCSb+/ZEmXqyur1dT92tpkauzL66iBX5GWLzVeryqb"
+		}
+	}
+	
+14调用问数接口坊的登录功能
+141请求方法：POST
+142接口名称：apiLogin
+143入参：{"account":"登录账号","password":"登录密码"}
+144出参：
+	{
+		"uuid": null,
+		"type": "success",
+		"data": {
+			"name": "李祥",
+			"_token": "bwaF1vdkOrXOWkx88kdJjkDCSb+/ZEmXqyur1dT92tpkauzL66iBX5GWLzVeryqb"
+		}
+	}

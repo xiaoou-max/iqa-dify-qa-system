@@ -1,0 +1,59 @@
+{
+  "test_time": "2026-08-24 15:34:15",
+  "test_mode": "offline",
+  "system_info": {
+    "linux_vm": "192.168.1.100",
+    "dify_public_url": "http://YOUR_PUBLIC_HOST:8082"
+  },
+  "summary": {
+    "total": 6,
+    "passed": 0,
+    "failed": 0,
+    "skipped": 6,
+    "pass_rate": "0.0%"
+  },
+  "results": [
+    {
+      "test_name": "容器状态检查",
+      "status": "SKIP",
+      "message": "需 SSH 访问 Linux VM 检查 Docker 容器状态",
+      "duration": "0.00s",
+      "timestamp": "2026-08-24 15:34:15"
+    },
+    {
+      "test_name": "API 健康检查",
+      "status": "SKIP",
+      "message": "需 SSH 访问 Linux VM 执行 curl 健康检查",
+      "duration": "0.00s",
+      "timestamp": "2026-08-24 15:34:15"
+    },
+    {
+      "test_name": "登录功能验证",
+      "status": "SKIP",
+      "message": "需 SSH 访问 Linux VM 在 API 容器内执行登录测试",
+      "duration": "0.00s",
+      "timestamp": "2026-08-24 15:34:15"
+    },
+    {
+      "test_name": "对话功能验证",
+      "status": "SKIP",
+      "message": "需 SSH 访问 Linux VM 在 API 容器内执行对话测试",
+      "duration": "0.00s",
+      "timestamp": "2026-08-24 15:34:15"
+    },
+    {
+      "test_name": "数据库连接验证",
+      "status": "SKIP",
+      "message": "需 SSH 访问 Linux VM 执行 PostgreSQL 查询",
+      "duration": "0.00s",
+      "timestamp": "2026-08-24 15:34:15"
+    },
+    {
+      "test_name": "公网访问验证",
+      "status": "SKIP",
+      "message": "需网络可达性测试，当前网络环境受限",
+      "duration": "0.00s",
+      "timestamp": "2026-08-24 15:34:15"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+serverAddr = "YOUR_PUBLIC_HOST"
+serverPort = 7000
+
+auth.method = "token"
+auth.token = "CHANGE_ME"
+
+log.to = "./frpc-vm.log"
+log.level = "info"
+log.maxDays = 7
+
+# Windows host proxies VM Dify (:80) because VM has no public network egress
+[[proxies]]
+name = "dify-vm"
+type = "tcp"
+localIP = "192.168.1.100"
+localPort = 80
+remotePort = 8082
