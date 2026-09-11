@@ -9,7 +9,7 @@ DASHSCOPE_EMBEDDING_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1/emb
 DASHSCOPE_API_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
 DASHSCOPE_API_KEY = "YOUR_DASHSCOPE_API_KEY"
 
-TENANT_ID = "36810dd3-e395-4d40-9600-f0c89441e596"
+TENANT_ID = "YOUR_DIFY_TENANT_ID"
 PLUGIN_ID = "langgenius/tongyi"
 PLUGIN_UNIQUE_ID = "langgenius/tongyi/tongyi"
 

@@ -138,7 +138,7 @@
 
 | 应用名称 | 应用 ID | 类型 | API Token |
 |----------|---------|------|-----------|
-| 洛阳市房产销售智能问答 | `4aa10005-c0cc-40c6-bee4-2f6a84073d32` | Chatflow (advanced-chat) | `YOUR_DIFY_APP_TOKEN` |
+| 洛阳市房产销售智能问答 | `YOUR_DIFY_APP_ID` | Chatflow (advanced-chat) | `YOUR_DIFY_APP_TOKEN` |
 | 广西交投财务智能助手 | `807f6f1b-d9ab-40ca-92ac-65b5a8acd6c8` | Agent Chat | - |
 
 ---
@@ -615,7 +615,7 @@ MODELS = [
 INSERT INTO provider_credentials (id, tenant_id, provider_type, provider_name, encrypted_config, is_valid)
 VALUES (
     uuid_generate_v4(),
-    '36810dd3-e395-4d40-9600-f0c89441e596',
+    'YOUR_DIFY_TENANT_ID',
     'custom',
     'langgenius/tongyi/tongyi',
     '<RSA加密后的配置>',
@@ -660,7 +660,7 @@ decrypted = decrypt_token(encrypted)
 -- 查询工作流
 SELECT id, app_id, status, version, created_at 
 FROM workflows 
-WHERE app_id = '4aa10005-c0cc-40c6-bee4-2f6a84073d32';
+WHERE app_id = 'YOUR_DIFY_APP_ID';
 ```
 
 #### 更新工作流 LLM 节点配置

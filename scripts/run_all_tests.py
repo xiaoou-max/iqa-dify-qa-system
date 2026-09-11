@@ -30,7 +30,7 @@ CONFIG = {
         "login_email": "difyadmin@dify.com",
         "login_password": "123456",
         "api_token": "YOUR_DIFY_APP_TOKEN",
-        "app_id": "4aa10005-c0cc-40c6-bee4-2f6a84073d32",
+        "app_id": "YOUR_DIFY_APP_ID",
         "app_name": "洛阳市房产销售智能问答"
     },
     "timeout": {

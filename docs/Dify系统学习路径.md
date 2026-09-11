@@ -978,7 +978,7 @@ SELECT current_user;
 SELECT id, name, mode, enable_api FROM apps;
 
 -- 查询特定应用
-SELECT * FROM apps WHERE id = '4aa10005-c0cc-40c6-bee4-2f6a84073d32';
+SELECT * FROM apps WHERE id = 'YOUR_DIFY_APP_ID';
 
 -- 模糊查询 (包含"洛阳"的应用)
 SELECT * FROM apps WHERE name LIKE '%洛阳%';
@@ -1129,7 +1129,7 @@ ORDER BY created_at DESC;"
 docker exec docker-db_postgres-1 psql -U postgres -d dify -c "
 SELECT id, LEFT(graph, 500) as graph_preview 
 FROM workflows 
-WHERE app_id = '4aa10005-c0cc-40c6-bee4-2f6a84073d32';"
+WHERE app_id = 'YOUR_DIFY_APP_ID';"
 
 # === 练习 3: 检查模型凭据 ===
 
